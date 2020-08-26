@@ -1,0 +1,33 @@
+int program(int argc, string[] argv){
+  var phytoPlankton = 2000000;
+  var zooPlankton = 100000;
+  var nutrients = 10000000;
+  for (var i = 0; i < 10000000; i = i + 1;) {
+    var diff = phytoPlankton - zooPlankton;
+
+    var zooPlanktonGrowth = diff>>7;
+
+    nutrients = nutrients + 100;
+
+    var potPhytoPlankton = nutrients - phytoPlankton;
+
+    var phytoPlanktonGrowth = potPhytoPlankton >>2;
+
+    var hungryZooPlankton = zooPlankton >>3;
+
+    var starvingZooPlankton = hungryZooPlankton >>2;
+
+    var successfullZooPlankton = hungryZooPlankton - starvingZooPlankton;
+
+    var deltaPhytoPlankton = phytoPlanktonGrowth - successfullZooPlankton;
+
+    var deltaZooPlankton = zooPlanktonGrowth - starvingZooPlankton;
+
+    phytoPlankton = phytoPlankton + deltaPhytoPlankton;
+
+    zooPlankton = zooPlankton + deltaZooPlankton;
+
+  }
+  print_int(phytoPlankton);
+  return 0;
+}

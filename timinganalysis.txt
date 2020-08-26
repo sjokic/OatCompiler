@@ -1,0 +1,198 @@
+OS: macOS Mojave 10.14.6
+CPU: Intel Core i7
+
+W/O -O1 FLAG
+--------------
+
+atprograms/regalloctest.oat
+----------------------------
+$ ./main.native --liveness trivial --regalloc none atprograms/regalloctest.oat
+$ time ./a.out
+
+real	0m0.719s
+user	0m0.707s
+sys	0m0.006s
+
+$ ./main.native --liveness dataflow --regalloc greedy atprograms/regalloctest.oat
+$ time ./a.out
+
+real	0m0.289s
+user	0m0.282s
+sys	0m0.004s
+
+$ ./main.native --liveness dataflow --regalloc better atprograms/regalloctest.oat
+$ time ./a.out
+
+real	0m0.255s
+user	0m0.247s
+sys	0m0.004s
+
+$ ./main.native --clang atprograms/regalloctest.oat
+$ time ./a.out
+
+real	0m0.009s
+user	0m0.002s
+sys	0m0.004s
+
+
+
+llprograms/matmul.ll
+----------------------------
+$ ./main.native --liveness trivial --regalloc none llprograms/matmul.ll 
+$ time ./a.out
+
+real	0m2.228s
+user	0m2.177s
+sys	0m0.018s
+
+$ ./main.native --liveness dataflow --regalloc greedy llprograms/matmul.ll 
+$ time ./a.out
+
+real	0m1.488s
+user	0m1.469s
+sys	0m0.007s
+
+$ ./main.native --liveness dataflow --regalloc better llprograms/matmul.ll 
+$ time ./a.out 
+
+real	0m0.526s
+user	0m0.516s
+sys	0m0.005s
+
+$ ./main.native --clang llprograms/matmul.ll 
+$ time ./a.out
+
+real	0m0.082s
+user	0m0.074s
+sys	0m0.004s
+
+
+
+studenttest.oat
+----------------------------
+$ ./main.native --liveness trivial --regalloc none studenttest.oat
+$ time ./a.out
+
+real	0m0.456s
+user	0m0.446s
+sys	0m0.005s
+
+$ ./main.native --liveness dataflow --regalloc greedy studenttest.oat
+$ time ./a.out
+
+real	0m0.132s
+user	0m0.125s
+sys	0m0.003s
+
+$ ./main.native --liveness dataflow --regalloc better studenttest.oat
+$ time ./a.out 
+
+real	0m0.128s
+user	0m0.121s
+sys	0m0.004s
+
+$ ./main.native --clang studenttest.oat
+$ time ./a.out
+
+real	0m0.026s
+user	0m0.020s
+sys	0m0.003s
+
+
+
+/W -O1 FLAG
+--------------
+
+atprograms/regalloctest.oat
+----------------------------
+$ ./main.native --liveness trivial --regalloc none -O1 atprograms/regalloctest.oat
+$ time ./a.out
+
+real	0m0.725s
+user	0m0.714s
+sys	0m0.005s
+
+$ ./main.native --liveness dataflow --regalloc greedy -O1 atprograms/regalloctest.oat
+$ time ./a.out
+
+real	0m0.682s
+user	0m0.666s
+sys	0m0.006s
+
+$ ./main.native --liveness dataflow --regalloc better -O1 atprograms/regalloctest.oat
+$ time ./a.out
+
+real	0m0.253s
+user	0m0.246s
+sys	0m0.003s
+
+$ ./main.native --clang -O1 atprograms/regalloctest.oat
+$ time ./a.out
+
+real	0m0.008s
+user	0m0.002s
+sys	0m0.004s
+
+
+
+llprograms/matmul.ll
+----------------------------
+$ ./main.native --liveness trivial --regalloc none -O1 llprograms/matmul.ll 
+$ time ./a.out
+
+real	0m2.151s
+user	0m2.128s
+sys	0m0.009s
+
+$ ./main.native --liveness dataflow --regalloc greedy -O1 llprograms/matmul.ll 
+$ time ./a.out
+
+real	0m1.499s
+user	0m1.482s
+sys	0m0.007s
+
+$ ./main.native --liveness dataflow --regalloc better -O1 llprograms/matmul.ll 
+$ time ./a.out 
+
+real	0m0.531s
+user	0m0.521s
+sys	0m0.005s
+
+$ ./main.native --clang -O1 llprograms/matmul.ll 
+$ time ./a.out
+
+real	0m0.079s
+user	0m0.074s
+sys	0m0.004s
+
+
+
+studenttest.oat
+----------------------------
+$ ./main.native --liveness trivial --regalloc none -O1 studenttest.oat
+$ time ./a.out
+
+real	0m0.354s
+user	0m0.345s
+sys	0m0.004s
+
+$ ./main.native --liveness dataflow --regalloc greedy -O1 studenttest.oat
+$ time ./a.out
+
+real	0m0.297s
+user	0m0.286s
+sys	0m0.004s
+
+$ ./main.native --liveness dataflow --regalloc better -O1 studenttest.oat
+$ time ./a.out 
+
+real	0m0.125s
+user	0m0.118s
+sys	0m0.003s
+
+$ ./main.native --clang -O1 studenttest.oat
+$ time ./a.out
+
+real	0m0.025s
+user	0m0.020s
+sys	0m0.003s
